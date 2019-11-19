@@ -1,8 +1,10 @@
 
-# chi = number of resources made per member in resource cell ### USE ###
+# N = number of successful terror attacks
+
+# chi = number of resources made per member in resource cell ### USE ### [1, 5] in 5 units
 
 # nu_r_a = proportion of resources sent to action cell
-# nu_re = number of recruits collected (exponential function of N) ### USE ###
+# nu_re = number of recruits collected (exponential function of N) ### USE ### [1, 5] in 5 units
 
 # rho_re = retention time of recruits
 # rho_t = retention time of trainees
@@ -12,10 +14,8 @@
 
 # phi_t_a = probability that a trainee goes to an action cell
 # phi_t_r = probability that a trainee goes to a resource cell
-# phi_a1 = probability that a terror attack is successful ### USE ###
+# phi_a1 = probability that a terror attack is successful ### USE ### [50, 90] in 5 units
 # phi_a2 = probability that an individual in a terror attack is eliminated
-
-# psi = total number of action members
 
 import random, time, math
 
@@ -24,6 +24,13 @@ nu_r_a = 0.7 ; nu_re = 3
 rho_re = 2 ; rho_t = 3
 zeta_a1 = 5 ; zeta_a2 = 10
 phi_t_a = 90 ; phi_t_r = 10 ; phi_a1 = 80 ; phi_a2 = 10
+
+def initialize(c, nu):
+    global chi, nu_re, phi_a1
+    chi = c
+    nu_re = nu
+
+initialize(5,5)
 
 # let's use 3 action cells, one resource cell, one recruit cell, and one training cell
 
@@ -61,7 +68,7 @@ action_cells = [
 
 t = 0
 
-while len(action_cells[0]["members"]) + len(action_cells[1]["members"]) + len(action_cells[2]["members"]) < 20_000:
+for k in range(27):
 
     t += 1
 
